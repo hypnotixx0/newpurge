@@ -22,7 +22,7 @@ class AppsManager {
                 description: 'Great web proxy',
                 category: 'browser',
                 icon: 'fas fa-shield-alt',
-                external: true
+                external: false
             },
         };
         
