@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="assets/e1bc9dd5-25b2-4626-9afc-694f3188bac0.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apps - /Purge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="apps.css">
+    <link rel="stylesheet" href="tooltip.css">
+    <script src="token-validator.js"></script>
+</head>
+<body>
+    <!-- Background -->
+    <div class="background"></div>
+
+    <!-- Home Logo -->
+    <div class="home-logo" onclick="window.location.href='index.html'">
+        <img src="assets/e1bc9dd5-25b2-4626-9afc-694f3188bac0.ico" alt="/Purge Logo" class="logo-img">
+    </div>
+
+    <!-- Apps Content -->
+    <div class="apps-page">
+        <div class="apps-header">
+            <h1 class="apps-title">Apps</h1>
+            <p class="apps-subtitle">Useful applications and tools</p>
+        </div>
+
+        <!-- Search and Filter Section -->
+        <div class="apps-controls">
+            <div class="search-filter-container">
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="app-search" placeholder="Search apps..." class="search-input">
+                        <button id="clear-search" class="clear-search-btn">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <select id="category-filter" class="category-filter">
+                    <option value="all">All Categories</option>
+                    <option value="browser">Browser</option>
+                    <option value="development">Development</option>
+                    <option value="productivity">Productivity</option>
+                </select>
+            </div>
+            
+            <div class="request-section">
+                <button class="request-btn" onclick="window.open('https://discord.gg/bS7Xgvyuu5', '_blank');">
+                    <i class="fas fa-plus"></i>
+                    Request an App
+                </button>
+            </div>
+        </div>
+
+        <!-- Apps Grid -->
+        <div class="apps-grid" id="apps-grid">
+            <!-- Rammerhead App -->
+            <div class="app-card" data-category="browser" onclick="showAppPreview('rammerhead')">
+                <div class="app-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="app-content">
+                    <h3 class="app-title">Rammerhead</h3>
+                    <p class="app-description">Great web proxy</p>
+                    <div class="app-meta">
+                        <span class="app-category">Browser</span>
+                        <span class="app-status">External</span>
+                    </div>
+                </div>
+                <div class="app-actions">
+                    <button class="app-btn" onclick="event.stopPropagation(); showAppPreview('rammerhead')">
+                        <i class="fas fa-play"></i>
+                        Launch
+                    </button>
+                </div>
+            </div>
+
+            <!-- More apps can be added here -->
+            <div class="app-card coming-soon">
+                <div class="app-icon">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="app-content">
+                    <h3 class="app-title">More Apps Coming</h3>
+                    <p class="app-description">We're constantly adding new applications</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Results Message -->
+        <div class="no-results" id="no-results" style="display: none;">
+            <div class="no-results-content">
+                <i class="fas fa-search"></i>
+                <h3>No apps found</h3>
+                <p>Try adjusting your search terms or <a href="https://discord.gg/bS7Xgvyuu5" target="_blank">request an app</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Preview Modal (Games Style) -->
+    <div class="app-preview-modal" id="app-preview-modal">
+        <div class="preview-content" id="preview-content">
+            <!-- Preview content will be loaded here -->
+        </div>
+    </div>
+
+    <!-- App Browser with Tabs (Only shows when app is opened) -->
+    <div id="app-browser" class="app-browser">
+        <div class="browser-tabs">
+            <!-- Tabs will be dynamically added here -->
+        </div>
+        <div class="browser-toolbar">
+            <div class="toolbar-left">
+                <button class="toolbar-btn" onclick="goBack()" title="Back">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <button class="toolbar-btn" onclick="goForward()" title="Forward">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="toolbar-btn" onclick="refreshApp()" title="Refresh">
+                    <i class="fas fa-redo"></i>
+                </button>
+            </div>
+            <div class="toolbar-center">
+                <div class="address-bar">
+                    <i class="fas fa-lock"></i>
+                    <span id="current-url">https://example.com</span>
+                </div>
+            </div>
+            <div class="toolbar-right">
+                <button class="toolbar-btn" onclick="openInNewTab()" title="Open in New Tab">
+                    <i class="fas fa-external-link-alt"></i>
+                </button>
+                <button class="toolbar-btn" onclick="goHome()" title="Home">
+                    <i class="fas fa-home"></i>
+                </button>
+                <button class="toolbar-btn" onclick="toggleFullscreen()" title="Fullscreen">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <button class="toolbar-btn close-btn" onclick="closeApp()" title="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="browser-content">
+            <embed id="app-frame" src="" type="text/html" style="width: 100%; height: 100%; border: none;">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 /Purge. Anyone posing as this site that isnt unhiin is false.</p>
+    </footer>
+
+    <!-- Load scripts -->
+    <script src="debug.js"></script>
+    <script src="utils.js"></script>
+    <script src="tab-cloaking.js"></script>
+    <script src="theme-manager.js"></script>
+    <script src="snow.js"></script>
+    <script src="tooltip-manager.js"></script>
+    <script src="back-to-top.js"></script>
+    <script src="accessibility.js"></script>
+    <script src="apps.js"></script>
+</body>
+
+</html>
