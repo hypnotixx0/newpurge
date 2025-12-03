@@ -16,6 +16,14 @@ class AppsManager {
                 icon: 'fas fa-shield-alt',
                 external: true
             },
+            'ethereal': {
+                url: 'https://etherealproxy.netlify.app/',
+                name: 'Ethereal',
+                description: 'Great web proxy',
+                category: 'browser',
+                icon: 'fas fa-shield-alt',
+                external: true
+            },
         };
         
         this.init();
